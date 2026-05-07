@@ -38,11 +38,11 @@
             }
 
             .hero {
-            min-height: 100vh;
             display: flex;
             align-items: center;
             overflow: hidden;
             position: relative;
+            margin-top: 65px;
             }
 
             .btn-gaming {
@@ -58,14 +58,14 @@
             opacity: 0.85;
             }
 
-            .card {
+            #download .card {
             background-color: #1a1a2e;
             border: none;
             border-radius: 15px;
             }
 
             .section {
-            padding: 80px 0;
+            padding: 65px 0;
             }
 
             iframe {
@@ -101,13 +101,12 @@
                 position: relative;
                 z-index: 2;
             }
-        #data-table_wrapper .row > div {
-            padding-left: 0px !important;
-            padding-right: 0 !important;
-        }
-        #data-table_wrapper > .row:first-child {
-            margin-top: 0 !important;
-        }
+            .dt-container>.row:first-child, .dt-container>.row>div {
+                margin-top: 0 !important;
+            }
+            .dt-container>.row div{
+                padding: 0!important;
+            }
         </style>
     </head>
     <body>
@@ -147,7 +146,7 @@
                         <a href="#download" class="btn btn-gaming mt-3"><i class="bi bi-cloud-arrow-down"></i> Download Sekarang</a>
                     </div>
                     <!-- RIGHT -->
-                    <div class="col-md-6 text-center mt-5 mt-md-0">
+                    <div class="col-md-6 text-center mt-5 mt-md-0 d-md-block d-none">
                         <img src="Logo361.PNG" class="img-fluid" width="350">
                     </div>
                 </div>
@@ -155,18 +154,19 @@
         </section>
 
         <!-- DOWNLOAD -->
-        <section id="download" class="section">
-            <div class="container text-center">
-                <h2 class="mb-5">Download Game</h2>
+        <section id="download" class="section bg-black">
+            <div class="container">
+                <h2 class="mb-4 text-center">Download Game</h2>
                 <div class="row g-4">
                     <!-- PC -->
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="card p-4 text-white">
-                            <h3><i class="bi bi-windows"></i></h3>
-                            <h4>Versi PC</h4>
-                            <p>Download untuk Windows</p>
+                            <div class="text-center">
+                                <h3><i class="bi bi-windows"></i> <small>PC</small></h3>
+                                <p>Download untuk Windows</p>
+                            </div>
                             <div class="table-responsive">
-                                <table id="pcTable" class="table table-bordered table-hover table-striped mb-0 table-dark align-middle">
+                                <table id="pcTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
                                     <thead>
                                         <tr>
                                             <th>Game</th>
@@ -181,13 +181,14 @@
                         </div>
                     </div>
                     <!-- Android -->
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <div class="card p-4 text-white">
-                            <h3><i class="bi bi-android2"></i></h3>
-                            <h4>Versi Android</h4>
-                            <p>Download APK Android</p>
+                            <div class="text-center">
+                                <h3><i class="bi bi-android2"></i> <small>Android</small></h3>
+                                <p>Download APK Android</p>
+                            </div>
                             <div class="table-responsive">
-                                <table id="apkTable" class="table table-bordered table-hover table-striped mb-0 table-dark align-middle">
+                                <table id="apkTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
                                     <thead>
                                         <tr>
                                             <th>Game</th>
@@ -206,12 +207,12 @@
         </section>
 
         <!-- TUTORIAL -->
-        <section id="tutorial" class="section bg-black">
+        <section id="tutorial" class="section" style="background: linear-gradient(45deg, #6f42c1, #00d4ff);">
             <div class="container text-center">
-                <h2 class="mb-5">Tutorial Download</h2>
+                <h2 class="mb-4">Tutorial Download</h2>
 
                 <div class="ratio ratio-16x9">
-                <iframe src="https://www.youtube.com/embed/nwTW6qkLDuI"
+                    <iframe src="https://www.youtube.com/embed/nwTW6qkLDuI"
                         title="Tutorial Video"
                         allowfullscreen></iframe>
                 </div>
@@ -219,9 +220,35 @@
             </div>
         </section>
 
+        <section id="discord" class="section bg-black">
+            <div class="container text-center">
+                <h3 class="mb-4">Kunjungi Juga</h3>
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+                    <div class="col">
+                        <a href="https://discord.gg/pvzfusion" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-discord"></i></h1>
+                            <h5 class="mb-0 text-white">PVZ Fusion</h5>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.tiktok.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-tiktok text-white"></i></h1>
+                            <h5 class="mb-0 text-white">BangBay Gaming</h5>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.youtube.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-youtube text-danger"></i></h1>
+                            <h5 class="mb-0 text-white">Robby Bayu Firdaus</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FOOTER -->
         <footer class="text-center py-4">
-            <small>© 2026 Game Terserah. All rights reserved.</small>
+            <small>© 2026 BangBay Gaming. All rights reserved.</small>
         </footer>
 
         <!-- Bootstrap JS -->
@@ -267,14 +294,11 @@
                             <td>${row.c[1]?.v || ''}</td>
                             <td>${row.c[3]?.v || ''}</td>
                             <td>${row.c[4]?.v || ''}</td>
-
                             <td>
                                 <a href="${row.c[5]?.v || '#'}"
                                 target="_blank"
-                                class="btn btn-gaming btn-sm">
-
-                                    <i class="bi bi-${icon}"></i>
-                                    Download
+                                class="btn btn-gaming p-1">
+                                    <i class="bi bi-${icon}"></i> Download
                                 </a>
                             </td>
                         </tr>
@@ -302,7 +326,7 @@
 
                     language: {
                         search: "_INPUT_",
-                        searchPlaceholder: "Cari game..."
+                        searchPlaceholder: "Cari di sini..."
                     }
                 });
 
