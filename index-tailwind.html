@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BangBay Gaming — Tailwind</title>
+    <meta name="google-adsense-account" content="ca-pub-6094462181639818">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Theme tokens used for small customizations */
+      :root{
+        --accent-1: #6f42c1; /* purple */
+        --accent-2: #00d4ff; /* cyan */
+        --accent-3: #00ff9c; /* neon green */
+      }
+
+      /* Light theme overrides when .light class is present on html */
+      html.light {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --muted: #475569;
+        --text: #0f172a;
+      }
+
+      /* Dark theme defaults (Tailwind dark: class will apply utilities) */
+      html:not(.light) {
+        --bg: #0b1220;
+        --card: #0f1724;
+        --muted: #94a3b8;
+        --text: #e6eef8;
+      }
+
+      /* Small helpers */
+      .accent-gradient{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));}
+      .glass{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); backdrop-filter: blur(6px);} 
+      .card-custom{background:var(--card);}
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900">
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-40">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between bg-white/60 dark:bg-black/50 glass rounded-b-xl">
+        <a href="#" class="flex items-center gap-3">
+          <img src="logo-pvzfusion.png" alt="logo" class="w-10 h-10 object-contain">
+          <span class="font-bold text-lg" style="color:var(--text)">BangBay Gaming</span>
+        </a>
+        <div class="hidden md:flex gap-4 items-center">
+          <a href="#download" class="text-sm hover:underline flex items-center gap-2 text-sm" style="color:var(--muted)">Download</a>
+          <a href="#tutorial" class="text-sm hover:underline flex items-center gap-2 text-sm" style="color:var(--muted)">Tutorial</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-md hover:scale-105 transition">
+            <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 20 20" fill="currentColor"><path d="M10 4.5a.75.75 0 01.75-.75h0A.75.75 0 0111.5 4.5V5a.75.75 0 01-1.5 0v-.5zM10 16a.75.75 0 01.75.75v0A.75.75 0 0110 17.5a.75.75 0 01-.75-.75V16A.75.75 0 0110 16zM4.5 10a.75.75 0 01-.75-.75h0A.75.75 0 014.5 8.5H5a.75.75 0 010 1.5h-.5zM15 10a.75.75 0 01-.75.75h0A.75.75 0 0113.5 10h1.5zM6.28 6.28a.75.75 0 010-1.06h0a.75.75 0 011.06 0l.35.35a.75.75 0 01-1.06 1.06l-.35-.35zM12.31 12.31a.75.75 0 010-1.06h0a.75.75 0 011.06 0l.35.35a.75.75 0 01-1.06 1.06l-.35-.35zM6.28 13.72a.75.75 0 011.06 0h0a.75.75 0 010 1.06l-.35.35a.75.75 0 01-1.06-1.06l.35-.35zM12.31 7.69a.75.75 0 011.06 0h0a.75.75 0 010 1.06l-.35.35a.75.75 0 01-1.06-1.06l.35-.35zM10 7.25a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5z"/></svg>
+            <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293a8 8 0 11-10.586-10.586 7 7 0 1010.586 10.586z"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-24 pb-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="rounded-xl p-8 shadow-xl card-custom glass border border-white/5">
+          <div class="md:flex md:items-center md:gap-8">
+            <div class="md:w-1/2">
+              <h1 class="text-4xl md:text-5xl font-extrabold" style="color:var(--text)">PVZ Fusion 3.7</h1>
+              <p class="mt-3 text-lg" style="color:var(--muted)">Update terbaru untuk game PVZ Fusion di PC & Android — desain bersih dan fokus pada akses cepat.</p>
+              <div class="mt-6 flex gap-3">
+                <a href="#download" class="inline-flex items-center gap-2 text-black px-4 py-2 rounded-lg shadow accent-gradient">Download Sekarang</a>
+                <a href="#tutorial" class="text-sm px-4 py-2 border rounded-lg" style="color:var(--muted);border-color:rgba(255,255,255,0.06)">Tutorial</a>
+              </div>
+            </div>
+            <div class="hidden md:block md:w-1/2 text-center">
+              <div class="inline-block p-6 rounded-xl" style="background:linear-gradient(135deg, rgba(111,66,193,0.08), rgba(0,212,255,0.06));">
+                <img src="Logo37.png" alt="Logo" class="mx-auto w-56">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- DOWNLOAD SECTION -->
+    <section id="download" class="py-12">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-center">Download Game</h2>
+        <p class="text-center text-slate-300 mt-2">Pilih platform dan unduh mod sesuai kebutuhan.</p>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="rounded-xl p-6 card-custom">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 16 16"><path d="M1 0a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v-1H1V1h14v11h-3v1h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1z"/></svg> PC</h3>
+                <p class="text-sm text-slate-400">Download untuk Windows</p>
+              </div>
+              <input id="searchPc" type="search" placeholder="Cari..." class="bg-white/5 text-sm rounded-md px-3 py-2 outline-none" />
+            </div>
+
+            <div class="overflow-x-auto mt-4">
+              <table class="min-w-full text-sm table-auto">
+                <thead>
+                  <tr class="text-left text-slate-400 border-b border-white/5">
+                    <th class="py-2">Game</th>
+                    <th class="py-2">Mod</th>
+                    <th class="py-2">Keterangan</th>
+                    <th class="py-2">Link</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody" class="divide-y divide-white/5"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="rounded-xl p-6 card-custom">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-semibold flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zM4 8c-2.21 0-4 1.79-4 4v1h16v-1c0-2.21-1.79-4-4-4H4z"/></svg> Android</h3>
+                <p class="text-sm text-slate-400">Download APK Android</p>
+              </div>
+              <input id="searchApk" type="search" placeholder="Cari..." class="bg-white/5 text-sm rounded-md px-3 py-2 outline-none" />
+            </div>
+
+            <div class="overflow-x-auto mt-4">
+              <table class="min-w-full text-sm table-auto">
+                <thead>
+                  <tr class="text-left text-slate-400 border-b border-white/5">
+                    <th class="py-2">Game</th>
+                    <th class="py-2">Mod</th>
+                    <th class="py-2">Keterangan</th>
+                    <th class="py-2">Link</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyApk" class="divide-y divide-white/5"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUTORIAL -->
+    <section id="tutorial" class="py-12">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold text-white">Tutorial Download</h2>
+        <p class="text-slate-300 mt-2">Panduan singkat dan video tutorial.</p>
+        <div class="mt-6">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@robbybayufirdaus/video/7639410351355825416" data-video-id="7639410351355825416" style="max-width: 605px;min-width: 325px;" >
+            <section>
+              <a target="_blank" title="@robbybayufirdaus" href="https://www.tiktok.com/@robbybayufirdaus?refer=embed">@robbybayufirdaus</a>
+              CARA TERBARU DOWNLOAD
+            </section>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="py-8 bg-black/40">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h3 class="font-semibold">Kunjungi Juga</h3>
+        <div class="mt-4 grid grid-cols-3 gap-4 max-w-md mx-auto">
+          <a class="p-4 rounded-lg card-dark" href="https://discord.gg/pvzfusion" target="_blank">PVZ Fusion</a>
+          <a class="p-4 rounded-lg card-dark" href="https://www.tiktok.com/@robbybayufirdaus" target="_blank">BangBay Gaming</a>
+          <a class="p-4 rounded-lg card-dark text-red-400" href="https://www.youtube.com/@robbybayufirdaus" target="_blank">Robby Bayu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-6 text-center text-sm text-slate-400">
+      © 2026 BangBay Gaming. All rights reserved.
+    </footer>
+
+    <script async src="https://www.tiktok.com/embed.js"></script>
+    <script>
+      // Theme toggle: stores 'light' or 'dark' in localStorage and toggles html.light class
+      (function(){
+        const btn = document.getElementById('themeToggle');
+        const iconSun = document.getElementById('iconSun');
+        const iconMoon = document.getElementById('iconMoon');
+
+        function showIcons(theme){
+          if(theme === 'light'){
+            iconSun.classList.remove('hidden');
+            iconMoon.classList.add('hidden');
+          } else {
+            iconSun.classList.add('hidden');
+            iconMoon.classList.remove('hidden');
+          }
+        }
+
+        function setTheme(theme){
+          if(theme === 'light'){
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.remove('light');
+          }
+          localStorage.setItem('theme', theme);
+          showIcons(theme);
+        }
+
+        const saved = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        setTheme(saved);
+
+        btn && btn.addEventListener('click', ()=>{
+          const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+          setTheme(current === 'light' ? 'dark' : 'light');
+        });
+      })();
+
+      const spreadsheetId = '1rSGoLpAd087I8hETAXCT4LBT79u9Nb5sKdWVGeIGIso';
+
+      async function loadTable(type, tableId){
+        const query = `select A,B,C,D,E,F where C='${type}' order by A desc`;
+        const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tq=${encodeURIComponent(query)}&tqx=out:json`;
+
+        try{
+          const res = await fetch(url);
+          const text = await res.text();
+          const data = JSON.parse(text.substr(47).slice(0, -2));
+          const rows = data.table.rows || [];
+          const tbody = document.getElementById(tableId);
+          tbody.innerHTML = '';
+
+          rows.forEach(row => {
+            const game = row.c[1]?.v || '';
+            const mod = row.c[3]?.v || '';
+            const note = row.c[4]?.v || '';
+            const link = row.c[5]?.v || '#';
+
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-white/2';
+            tr.innerHTML = `
+              <td class="py-3 pr-6">${game}</td>
+              <td class="py-3 pr-6">${mod}</td>
+              <td class="py-3 pr-6">${note}</td>
+              <td class="py-3"> <a class="inline-block px-3 py-1 rounded-md text-black" style="background:linear-gradient(90deg,var(--accent-1),var(--accent-2));" href="${link}" target="_blank" rel="noopener">Download</a></td>
+            `;
+
+            tbody.appendChild(tr);
+          });
+
+        }catch(e){
+          console.error(e);
+        }
+      }
+
+      function setupSearch(inputId, tableBodyId){
+        const input = document.getElementById(inputId);
+        if(!input) return;
+        input.addEventListener('input', ()=>{
+          const q = input.value.toLowerCase();
+          const rows = document.getElementById(tableBodyId).querySelectorAll('tr');
+          rows.forEach(r => {
+            const text = r.textContent.toLowerCase();
+            r.style.display = text.includes(q) ? '' : 'none';
+          });
+        });
+      }
+
+      // load both tables
+      loadTable('PC', 'tableBody');
+      loadTable('Android', 'tableBodyApk');
+
+      // setup search
+      setupSearch('searchPc','tableBody');
+      setupSearch('searchApk','tableBodyApk');
+    </script>
+  </body>
+</html>
