@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BangBay Gaming</title>
+        <meta name="google-adsense-account" content="ca-pub-6094462181639818">
+        <!-- Bootstrap 5.3 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.3.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/b-print-3.2.3/datatables.min.css" rel="stylesheet" integrity="sha384-+YwnuMC9Ru61zHw7cBfm17P6FanwZidSEsCj0A4NtZeoLRKw1Lknz/OpJVFG1Kl3" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha384-VFQrHzqBh5qiJIU0uGU5CIW3+OWpdGGJM9LBnGbuIH2mkICcFZ7lPd/AAtI7SNf7" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" integrity="sha384-/RlQG9uf0M2vcTw3CX7fbqgbj/h8wKxw7C3zu9/GxcBPRKOEcESxaxufwRXqzq6n" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.3.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/b-print-3.2.3/datatables.min.js" integrity="sha384-mwbVUKhFWwaz+tsuTXTA/9+wFki1XYMAkM7p+y/pf095BktzgnYm4mL1y/nnNwI2" crossorigin="anonymous"></script>
+        <!-- Custom Gaming Theme -->
+        <style>
+            @font-face {
+                font-family: 'PvZ2Regular';
+                src: url('PvZ2 Regular.ttf') format('truetype');
+            }
+            :root {
+            --bs-primary: #6f42c1;   /* neon purple */
+            --bs-secondary: #1f1f2e; /* dark */
+            --bs-success: #00ff9c;   /* neon green */
+            --bs-info: #00d4ff;      /* cyan */
+            --bs-warning: #ffc107;   /* gold */
+            --bs-danger: #ff3860;    /* neon red */
+            --bs-dark: #0d0d0d;
+            --bs-light: #f8f9fa;
+            }
+
+            body {
+            background-color: var(--bs-dark);
+            color: white;
+            scroll-behavior: smooth;
+            font-family: 'PVZ2Regular';
+            }
+
+            .navbar {
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            }
+
+            .hero {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            margin-top: 65px;
+            }
+
+            .btn-gaming {
+            background: linear-gradient(45deg, #6f42c1, #00d4ff);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            }
+
+            .btn-gaming:hover {
+            opacity: 0.85;
+            }
+
+            #download .card {
+            background-color: #1a1a2e;
+            border: none;
+            border-radius: 15px;
+            }
+
+            .section {
+            padding: 65px 0;
+            }
+
+            iframe {
+            border-radius: 15px;
+            }
+            section.hero::before{
+                content: '';
+                position: absolute;
+                inset: 0;
+
+                background-image: url('bghero.png');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                background-color: #d4d4d4;
+                background-blend-mode: multiply;
+
+                filter: blur(5px);
+                /* transform: scale(1.1); */
+
+                z-index: -2;
+            }
+
+            section.hero::after{
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: rgba(46,46,46,0.6);
+                z-index: -1;
+            }
+
+            section.hero .container{
+                position: relative;
+                z-index: 2;
+            }
+            .dt-container>.row:first-child, .dt-container>.row>div {
+                margin-top: 0 !important;
+            }
+            .dt-container>.row div{
+                padding: 0!important;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="logo-pvzfusion.png"
+                        width="40" class="me-2">
+                    <strong>BangBay Gaming</strong>
+                </a>
+
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="nav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#download"><i class="bi bi-cloud-arrow-down"></i> Download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tutorial"><i class="bi bi-patch-question"></i> Tutorial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- HERO -->
+        <section class="hero section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- LEFT -->
+                    <div class="col-md-6 text-center text-md-start">
+                        <h1 class="display-4 fw-bold">PVZ Fusion 3.7</h1>
+                        <p class="lead">Update terbaru untuk game PVZ Fusion di PC & Android</p>
+                        <a href="#download" class="btn btn-gaming mt-3"><i class="bi bi-cloud-arrow-down"></i> Download Sekarang</a>
+                    </div>
+                    <!-- RIGHT -->
+                    <div class="col-md-6 text-center mt-5 mt-md-0 d-md-block d-none">
+                        <img src="Logo37.png" class="img-fluid" width="350">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOWNLOAD -->
+        <section id="download" class="section bg-black">
+            <div class="container">
+                <h2 class="mb-4 text-center">Download Game</h2>
+                <div class="row g-4">
+                    <!-- Android -->
+                    <div class="col-lg-6">
+                        <div class="card p-4 text-white">
+                            <div class="text-center">
+                                <h3><i class="bi bi-android2"></i> <small>Android</small></h3>
+                                <p>Download APK Android</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="apkTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Game</th>
+                                            <th>Mod</th>
+                                            <th>Keterangan</th>
+                                            <th>Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBodyApk"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PC -->
+                    <div class="col-lg-6">
+                        <div class="card p-4 text-white">
+                            <div class="text-center">
+                                <h3><i class="bi bi-windows"></i> <small>PC</small></h3>
+                                <p>Download untuk Windows</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="pcTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Game</th>
+                                            <th>Mod</th>
+                                            <th>Keterangan</th>
+                                            <th>Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TUTORIAL -->
+        <section id="tutorial" class="section" style="background: linear-gradient(45deg, #6f42c1, #00d4ff);">
+            <div class="container text-center">
+                <h2 class="mb-4">Tutorial Download</h2>
+                <!-- <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@robbybayufirdaus/video/7639410351355825416" data-video-id="7639410351355825416" style="max-width: 605px;min-width: 325px;" >
+                    <section>
+                        <a target="_blank" title="@robbybayufirdaus" href="https://www.tiktok.com/@robbybayufirdaus?refer=embed">@robbybayufirdaus</a>
+                        CARA TERBARU DOWNLOAD
+                        <a title="plantsvszombies" target="_blank" href="https://www.tiktok.com/tag/plantsvszombies?refer=embed">#plantsvszombies</a>
+                        <a title="pvzfusion" target="_blank" href="https://www.tiktok.com/tag/pvzfusion?refer=embed">#pvzfusion</a>
+                        <a target="_blank" title="♬ nhạc nền  - woowhasisb" href="https://www.tiktok.com/music/nhạc-nền-woowhasisb-7434449668957915905?refer=embed">♬ nhạc nền  - woowhasisb</a>
+                    </section>
+                </blockquote> -->
+                <div class="ratio ratio-16x9 mx-auto" style="max-width:1200px;">
+                    <iframe src="https://www.youtube.com/embed/08steC7PBE0" title="DOWNLOAD PVZ FUSION TERBARU DI BANGBAYGAMING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+            
+        <section id="discord" class="section bg-black">
+            <div class="container text-center">
+                <h3 class="mb-4">Kunjungi Juga</h3>
+                <div class="row row-cols-1 row-cols-md-3 g-3">
+                    <div class="col">
+                        <a href="https://discord.gg/pvzfusion" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-discord"></i></h1>
+                            <h5 class="mb-0 text-white">PVZ Fusion</h5>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.tiktok.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-tiktok text-white"></i></h1>
+                            <h5 class="mb-0 text-white">BangBay Gaming</h5>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.youtube.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
+                            <h1><i class="bi bi-youtube text-danger"></i></h1>
+                            <h5 class="mb-0 text-white">Robby Bayu Firdaus</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-4">
+            <small>© 2026 BangBay Gaming. All rights reserved.</small>
+        </footer>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script async src="https://www.tiktok.com/embed.js"></script>
+        <script>
+
+        const spreadsheetId = '1rSGoLpAd087I8hETAXCT4LBT79u9Nb5sKdWVGeIGIso';
+
+        function loadTable(type, tableId, dataTableId){
+
+            let icon = '';
+
+            if(type == 'PC'){
+                icon = 'windows';
+            }else{
+                icon = 'android2';
+            }
+
+            const query =
+            `select A,B,C,D,E,F where C='${type}' order by A desc`;
+
+            const url =
+            `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tq=${encodeURIComponent(query)}&tqx=out:json`;
+
+            fetch(url)
+            .then(res => res.text())
+            .then(rep => {
+
+                const data = JSON.parse(
+                    rep.substr(47).slice(0, -2)
+                );
+
+                const rows = data.table.rows;
+
+                const tableBody = document.getElementById(tableId);
+
+                tableBody.innerHTML = '';
+
+                rows.forEach(row => {
+
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${row.c[1]?.v || ''}</td>
+                            <td>${row.c[3]?.v || ''}</td>
+                            <td>${row.c[4]?.v || ''}</td>
+                            <td>
+                                <a href="${row.c[5]?.v || '#'}" class="btn btn-gaming p-1" target="_blank">
+                                    <i class="bi bi-${icon}"></i> Download
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+
+                // =========================
+                // INIT DATATABLE
+                // =========================
+
+                // destroy jika sudah ada
+                if ($.fn.DataTable.isDataTable(`#${dataTableId}`)) {
+                    $(`#${dataTableId}`).DataTable().destroy();
+                }
+
+                // init datatable
+                $(`#${dataTableId}`).DataTable({
+                    responsive: true,
+                    pageLength: 10,
+                    ordering: false,
+                    searching: true,
+                    lengthChange: false,
+                    info: false,
+
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Cari di sini..."
+                    }
+                });
+
+            })
+            .catch(err => console.log(err));
+        }
+
+
+        // ========================================
+        // LOAD TABLE
+        // ========================================
+
+        loadTable('PC', 'tableBody', 'pcTable');
+
+        loadTable('Android', 'tableBodyApk', 'apkTable');
+
+        </script>
+    </body>
+</html>

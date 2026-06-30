@@ -1,357 +1,1570 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BangBay Gaming</title>
-        <meta name="google-adsense-account" content="ca-pub-6094462181639818">
-        <!-- Bootstrap 5.3 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.3.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/b-print-3.2.3/datatables.min.css" rel="stylesheet" integrity="sha384-+YwnuMC9Ru61zHw7cBfm17P6FanwZidSEsCj0A4NtZeoLRKw1Lknz/OpJVFG1Kl3" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha384-VFQrHzqBh5qiJIU0uGU5CIW3+OWpdGGJM9LBnGbuIH2mkICcFZ7lPd/AAtI7SNf7" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" integrity="sha384-/RlQG9uf0M2vcTw3CX7fbqgbj/h8wKxw7C3zu9/GxcBPRKOEcESxaxufwRXqzq6n" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.3.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/b-print-3.2.3/datatables.min.js" integrity="sha384-mwbVUKhFWwaz+tsuTXTA/9+wFki1XYMAkM7p+y/pf095BktzgnYm4mL1y/nnNwI2" crossorigin="anonymous"></script>
-        <!-- Custom Gaming Theme -->
-        <style>
-            @font-face {
-                font-family: 'PvZ2Regular';
-                src: url('PvZ2 Regular.ttf') format('truetype');
-            }
-            :root {
-            --bs-primary: #6f42c1;   /* neon purple */
-            --bs-secondary: #1f1f2e; /* dark */
-            --bs-success: #00ff9c;   /* neon green */
-            --bs-info: #00d4ff;      /* cyan */
-            --bs-warning: #ffc107;   /* gold */
-            --bs-danger: #ff3860;    /* neon red */
-            --bs-dark: #0d0d0d;
-            --bs-light: #f8f9fa;
-            }
 
-            body {
-            background-color: var(--bs-dark);
-            color: white;
-            scroll-behavior: smooth;
-            font-family: 'PVZ2Regular';
-            }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BangBay Play - PVZ Fusion Downloads</title>
 
-            .navbar {
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            }
+    <!-- Google Fonts: Inter for UI, Outfit for Headers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-            .hero {
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            margin-top: 65px;
-            }
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-            .btn-gaming {
-            background: linear-gradient(45deg, #6f42c1, #00d4ff);
-            border: none;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            }
-
-            .btn-gaming:hover {
-            opacity: 0.85;
-            }
-
-            #download .card {
-            background-color: #1a1a2e;
-            border: none;
-            border-radius: 15px;
-            }
-
-            .section {
-            padding: 65px 0;
-            }
-
-            iframe {
-            border-radius: 15px;
-            }
-            section.hero::before{
-                content: '';
-                position: absolute;
-                inset: 0;
-
-                background-image: url('bghero.png');
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                background-color: #d4d4d4;
-                background-blend-mode: multiply;
-
-                filter: blur(5px);
-                /* transform: scale(1.1); */
-
-                z-index: -2;
-            }
-
-            section.hero::after{
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: rgba(46,46,46,0.6);
-                z-index: -1;
-            }
-
-            section.hero .container{
-                position: relative;
-                z-index: 2;
-            }
-            .dt-container>.row:first-child, .dt-container>.row>div {
-                margin-top: 0 !important;
-            }
-            .dt-container>.row div{
-                padding: 0!important;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="logo-pvzfusion.png"
-                        width="40" class="me-2">
-                    <strong>BangBay Gaming</strong>
-                </a>
-
-                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="nav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#download"><i class="bi bi-cloud-arrow-down"></i> Download</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#tutorial"><i class="bi bi-patch-question"></i> Tutorial</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- HERO -->
-        <section class="hero section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <!-- LEFT -->
-                    <div class="col-md-6 text-center text-md-start">
-                        <h1 class="display-4 fw-bold">PVZ Fusion 3.7</h1>
-                        <p class="lead">Update terbaru untuk game PVZ Fusion di PC & Android</p>
-                        <a href="#download" class="btn btn-gaming mt-3"><i class="bi bi-cloud-arrow-down"></i> Download Sekarang</a>
-                    </div>
-                    <!-- RIGHT -->
-                    <div class="col-md-6 text-center mt-5 mt-md-0 d-md-block d-none">
-                        <img src="Logo37.png" class="img-fluid" width="350">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DOWNLOAD -->
-        <section id="download" class="section bg-black">
-            <div class="container">
-                <h2 class="mb-4 text-center">Download Game</h2>
-                <div class="row g-4">
-                    <!-- Android -->
-                    <div class="col-lg-6">
-                        <div class="card p-4 text-white">
-                            <div class="text-center">
-                                <h3><i class="bi bi-android2"></i> <small>Android</small></h3>
-                                <p>Download APK Android</p>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="apkTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Game</th>
-                                            <th>Mod</th>
-                                            <th>Keterangan</th>
-                                            <th>Link</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableBodyApk"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PC -->
-                    <div class="col-lg-6">
-                        <div class="card p-4 text-white">
-                            <div class="text-center">
-                                <h3><i class="bi bi-windows"></i> <small>PC</small></h3>
-                                <p>Download untuk Windows</p>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="pcTable" class="table table-bordered table-hover mb-0 table-dark table-striped table-sm align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Game</th>
-                                            <th>Mod</th>
-                                            <th>Keterangan</th>
-                                            <th>Link</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableBody"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TUTORIAL -->
-        <section id="tutorial" class="section" style="background: linear-gradient(45deg, #6f42c1, #00d4ff);">
-            <div class="container text-center">
-                <h2 class="mb-4">Tutorial Download</h2>
-                <!-- <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@robbybayufirdaus/video/7639410351355825416" data-video-id="7639410351355825416" style="max-width: 605px;min-width: 325px;" >
-                    <section>
-                        <a target="_blank" title="@robbybayufirdaus" href="https://www.tiktok.com/@robbybayufirdaus?refer=embed">@robbybayufirdaus</a>
-                        CARA TERBARU DOWNLOAD
-                        <a title="plantsvszombies" target="_blank" href="https://www.tiktok.com/tag/plantsvszombies?refer=embed">#plantsvszombies</a>
-                        <a title="pvzfusion" target="_blank" href="https://www.tiktok.com/tag/pvzfusion?refer=embed">#pvzfusion</a>
-                        <a target="_blank" title="♬ nhạc nền  - woowhasisb" href="https://www.tiktok.com/music/nhạc-nền-woowhasisb-7434449668957915905?refer=embed">♬ nhạc nền  - woowhasisb</a>
-                    </section>
-                </blockquote> -->
-                <div class="ratio ratio-16x9 mx-auto" style="max-width:1200px;">
-                    <iframe src="https://www.youtube.com/embed/08steC7PBE0" title="DOWNLOAD PVZ FUSION TERBARU DI BANGBAYGAMING" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-            
-        <section id="discord" class="section bg-black">
-            <div class="container text-center">
-                <h3 class="mb-4">Kunjungi Juga</h3>
-                <div class="row row-cols-1 row-cols-md-3 g-3">
-                    <div class="col">
-                        <a href="https://discord.gg/pvzfusion" target="_blank" class="text-decoration-none">
-                            <h1><i class="bi bi-discord"></i></h1>
-                            <h5 class="mb-0 text-white">PVZ Fusion</h5>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://www.tiktok.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
-                            <h1><i class="bi bi-tiktok text-white"></i></h1>
-                            <h5 class="mb-0 text-white">BangBay Gaming</h5>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://www.youtube.com/@robbybayufirdaus" target="_blank" class="text-decoration-none">
-                            <h1><i class="bi bi-youtube text-danger"></i></h1>
-                            <h5 class="mb-0 text-white">Robby Bayu Firdaus</h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="text-center py-4">
-            <small>© 2026 BangBay Gaming. All rights reserved.</small>
-        </footer>
-        
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-        <script>
-
-        const spreadsheetId = '1rSGoLpAd087I8hETAXCT4LBT79u9Nb5sKdWVGeIGIso';
-
-        function loadTable(type, tableId, dataTableId){
-
-            let icon = '';
-
-            if(type == 'PC'){
-                icon = 'windows';
-            }else{
-                icon = 'android2';
-            }
-
-            const query =
-            `select A,B,C,D,E,F where C='${type}' order by A desc`;
-
-            const url =
-            `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tq=${encodeURIComponent(query)}&tqx=out:json`;
-
-            fetch(url)
-            .then(res => res.text())
-            .then(rep => {
-
-                const data = JSON.parse(
-                    rep.substr(47).slice(0, -2)
-                );
-
-                const rows = data.table.rows;
-
-                const tableBody = document.getElementById(tableId);
-
-                tableBody.innerHTML = '';
-
-                rows.forEach(row => {
-
-                    tableBody.innerHTML += `
-                        <tr>
-                            <td>${row.c[1]?.v || ''}</td>
-                            <td>${row.c[3]?.v || ''}</td>
-                            <td>${row.c[4]?.v || ''}</td>
-                            <td>
-                                <a href="${row.c[5]?.v || '#'}" class="btn btn-gaming p-1" target="_blank">
-                                    <i class="bi bi-${icon}"></i> Download
-                                </a>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-
-                // =========================
-                // INIT DATATABLE
-                // =========================
-
-                // destroy jika sudah ada
-                if ($.fn.DataTable.isDataTable(`#${dataTableId}`)) {
-                    $(`#${dataTableId}`).DataTable().destroy();
-                }
-
-                // init datatable
-                $(`#${dataTableId}`).DataTable({
-                    responsive: true,
-                    pageLength: 10,
-                    ordering: false,
-                    searching: true,
-                    lengthChange: false,
-                    info: false,
-
-                    language: {
-                        search: "_INPUT_",
-                        searchPlaceholder: "Cari di sini..."
-                    }
-                });
-
-            })
-            .catch(err => console.log(err));
+    <style>
+        /* PvZ2 Theme Font */
+        @font-face {
+            font-family: 'PvZ2Regular';
+            src: url('PvZ2 Regular.ttf') format('truetype');
+            font-display: swap;
         }
 
+        :root {
+            --bg-main: #0e0e11;
+            --bg-card: #1f1f23;
+            --bg-nav: #161619;
+            --text-primary: #f1f3f4;
+            --text-secondary: #9aa0a6;
+            --play-green: #00a273;
+            --play-green-hover: #00875f;
+            --play-green-bg: rgba(0, 162, 115, 0.15);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-ui: 'Inter', sans-serif;
+            --font-header: 'Outfit', sans-serif;
+            --font-game: 'PvZ2Regular', 'Outfit', sans-serif;
+        }
 
-        // ========================================
-        // LOAD TABLE
-        // ========================================
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        loadTable('PC', 'tableBody', 'pcTable');
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-ui);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-        loadTable('Android', 'tableBodyApk', 'apkTable');
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-        </script>
-    </body>
+        /* HEADER & NAVBAR */
+        header {
+            background-color: var(--bg-nav);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        /* Google Play-like Triangle Logo */
+        .play-logo {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .brand-text {
+            font-family: var(--font-game);
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(45deg, #00d4ff, #00a273, #ffc107);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            flex: 0 1 500px;
+            position: relative;
+            margin: 0 16px;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .search-container .search-close {
+            display: none;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid transparent;
+            border-radius: 24px;
+            padding: 10px 16px 10px 48px;
+            color: var(--text-primary);
+            font-family: var(--font-ui);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            background-color: var(--bg-main);
+            border-color: var(--play-green);
+            box-shadow: 0 0 0 2px rgba(0, 162, 115, 0.2);
+        }
+
+        /* MAIN LAYOUT */
+        main {
+            margin-top: 64px;
+            padding-bottom: 80px;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            position: relative;
+            background: linear-gradient(180deg, rgba(22, 22, 25, 0.4) 0%, rgba(14, 14, 17, 1) 100%), url('bghero.png') center/cover no-repeat;
+            padding: 80px 24px 40px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-tag {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-family: var(--font-header);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-play {
+            background-color: var(--play-green);
+            color: white;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-play:hover {
+            background-color: var(--play-green-hover);
+        }
+
+        .btn-play:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            font-family: var(--font-ui);
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-image {
+            flex: 0 1 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* NAVIGATION TABS (PLAY STORE STYLE) */
+        .tabs-container {
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 64px;
+            background-color: var(--bg-main);
+            z-index: 90;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tabs {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            padding: 0 24px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-header);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 16px 24px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--play-green);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 3px;
+            background-color: var(--play-green);
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* CONTENT SECTION */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .section-title {
+            font-family: var(--font-header);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+            margin-bottom: 48px;
+        }
+
+        /* PLAY STORE GAME CARD */
+        .game-card {
+            background-color: transparent;
+            border-radius: 16px;
+            padding: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            position: relative;
+            display: flex;
+            gap: 10px;
+        }
+
+        .game-card:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+            transform: translateY(-4px);
+        }
+
+        .card-icon-wrapper {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            background-color: #161619;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .card-icon {
+            transform: scale(1.05);
+        }
+
+        .card-info {
+            padding: 0 4px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .card-dev {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .card-stats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .card-rating i {
+            color: #ffb300;
+            font-size: 0.75rem;
+        }
+
+        .card-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .badge-mod-menu {
+            background-color: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+        }
+
+        .badge-mod-addon {
+            background-color: rgba(111, 66, 193, 0.15);
+            color: #a17cf0;
+        }
+
+        .badge-original {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+            color: var(--text-secondary);
+            gap: 16px;
+            grid-column: 1 / -1;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--play-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* TUTORIAL & VIDEO TRAILER SECTION */
+        .tutorial-section {
+            background-color: var(--bg-nav);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 60px 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tutorial-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* DEVELOPER CONTACT / COMMUNITY */
+        .developer-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .dev-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .dev-title {
+            font-family: var(--font-header);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-item {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-discord {
+            color: #5865F2;
+        }
+
+        .icon-tiktok {
+            color: #ffffff;
+        }
+
+        .icon-youtube {
+            color: #FF0000;
+        }
+
+        .contact-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* PLAY STORE DETAILED POPUP (FULLSCREEN OVERLAY) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-main);
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-main);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 10;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px 80px 16px;
+        }
+
+        /* APP DETAIL ROW */
+        .app-detail-header {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .app-detail-icon-wrapper {
+            flex: 0 0 120px;
+            height: 120px;
+            border-radius: 24px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-detail-icon {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .app-detail-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .app-detail-title {
+            font-family: var(--font-header);
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .app-detail-dev {
+            color: var(--play-green);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .app-detail-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* BADGES STRIP */
+        .badges-strip {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .badge-column {
+            flex: 1;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge-column:last-child {
+            border-right: none;
+        }
+
+        .badge-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-value i {
+            font-size: 0.9rem;
+        }
+
+        .badge-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* INSTALL BUTTON BLOCK */
+        .install-block {
+            margin-bottom: 32px;
+        }
+
+        .btn-install {
+            width: 100%;
+            background-color: var(--play-green);
+            color: white;
+            border: none;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-install:hover {
+            background-color: var(--play-green-hover);
+        }
+
+        .btn-install:active {
+            transform: scale(0.99);
+        }
+
+        .device-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 12px;
+        }
+
+        /* PREVIEW GALLERY (SCREENS) */
+        .gallery-section {
+            margin-bottom: 32px;
+        }
+
+        .gallery-title {
+            font-family: var(--font-header);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .gallery-img {
+            flex: 0 0 240px;
+            height: 135px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+        }
+
+        /* DETAIL DESCRIPTION */
+        .detail-desc-section {
+            margin-bottom: 32px;
+        }
+
+        .detail-desc-title {
+            font-family: var(--font-header);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .detail-desc-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .detail-desc-content b {
+            color: var(--text-primary);
+        }
+
+        .detail-desc-content br {
+            margin-bottom: 8px;
+            display: block;
+            content: "";
+        }
+
+        /* INFO GRID */
+        .info-grid-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 32px;
+        }
+
+        .info-grid-title {
+            font-family: var(--font-header);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .info-grid-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-grid-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .info-grid-val {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            background-color: var(--bg-nav);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* SVG PLAY ICON */
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 16px solid var(--play-green);
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 16px;
+            }
+
+            .search-container {
+                flex: 0 0 auto;
+                margin: 0;
+                position: static;
+            }
+
+            .search-container .search-icon {
+                position: static;
+                transform: none;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background-color: var(--bg-card);
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                cursor: pointer;
+            }
+
+            .search-container .search-input {
+                display: none;
+            }
+
+            .search-container .search-close {
+                display: none;
+            }
+
+            /* Expanded mobile search state */
+            .search-container.mobile-expanded {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 64px;
+                display: flex;
+                align-items: center;
+                padding: 0 12px;
+                background-color: var(--bg-nav);
+                z-index: 200;
+                gap: 8px;
+            }
+
+            .search-container.mobile-expanded .search-icon {
+                display: none;
+            }
+
+            .search-container.mobile-expanded .search-input {
+                display: block;
+                flex: 1;
+            }
+
+            .search-container.mobile-expanded .search-close {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border: none;
+                background: none;
+                color: var(--text-primary);
+                font-size: 1.3rem;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .tabs {
+                justify-content: center;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .game-card {
+                padding: 8px;
+            }
+
+            .card-icon-wrapper {
+                border-radius: 14px;
+            }
+
+            .card-title {
+                font-size: 0.85rem;
+            }
+
+            .app-detail-header {
+                gap: 16px;
+            }
+
+            .app-detail-icon-wrapper {
+                flex: 0 0 80px;
+                height: 80px;
+                border-radius: 16px;
+            }
+
+            .app-detail-title {
+                font-size: 1.3rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <div class="brand" onclick="window.location.reload()">
+            <div class="play-logo">
+                <img src="logo-pvzfusion.png" alt="PVZ Fusion Logo" width="28" height="28" style="border-radius: 6px;">
+            </div>
+            <span class="brand-text">BangBay Gaming</span>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+            <i class="bi bi-search search-icon" onclick="toggleMobileSearch()"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari versi game...">
+            <button class="search-close" onclick="closeMobileSearch()" aria-label="Tutup pencarian">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO BANNER -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-tag">Update Terbaru v3.7</span>
+                    <h1 class="hero-title">PVZ Fusion Edition</h1>
+                    <p class="hero-subtitle">Nikmati pengalaman bermain Plants vs Zombies dengan mekanik fusion unik.
+                        Unduh versi terlengkap untuk Android & PC di sini!</p>
+                    <div class="hero-buttons">
+                        <a href="#catalog" class="btn-play"><i class="bi bi-controller"></i> Mulai Main</a>
+                        <a href="#tutorial" class="btn-outline"><i class="bi bi-play-circle"></i> Lihat Panduan</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="Logo37.png" alt="PVZ Fusion 3.7 Cover Logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- TABS BAR -->
+        <section class="tabs-container" id="catalog">
+            <div class="tabs">
+                <button class="tab-btn active" id="tab-Android" onclick="switchTab('Android')">Android</button>
+                <button class="tab-btn" id="tab-PC" onclick="switchTab('PC')">PC (Windows)</button>
+            </div>
+        </section>
+
+        <!-- CONTENT SECTION -->
+        <section class="content-section">
+            <div class="section-title">
+                <span id="category-title">Versi Game Android</span>
+            </div>
+
+            <!-- Card Grid -->
+            <div class="card-grid" id="gameGrid">
+                <!-- Dynamically populated via JS -->
+                <div class="loading-container" id="loadingState">
+                    <div class="spinner"></div>
+                    <p>Memuat database game...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TUTORIAL / TRAILER VIDEO -->
+        <section class="tutorial-section" id="tutorial">
+            <div class="tutorial-content">
+                <div class="section-title">
+                    <span>Video Panduan Download</span>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/08steC7PBE0"
+                        title="DOWNLOAD PVZ FUSION TERBARU DI BANGBAYGAMING"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEVELOPER CONTACT / COMMUNITY -->
+        <section class="developer-section">
+            <div class="dev-card">
+                <div class="dev-title">
+                    <i class="bi bi-shield-check text-success"></i> Hubungi Developer & Komunitas
+                </div>
+                <div class="contact-grid">
+                    <a href="https://discord.gg/pvzfusion" target="_blank" class="contact-item">
+                        <div class="contact-icon icon-discord">
+                            <i class="bi bi-discord"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Discord PVZ Fusion</h4>
+                            <p>Gabung dengan komunitas global game fusion</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@robbybayufirdaus" target="_blank" class="contact-item">
+                        <div class="contact-icon icon-tiktok">
+                            <i class="bi bi-tiktok"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>TikTok BangBay Gaming</h4>
+                            <p>Tonton klip gameplay & tips & trik seru</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@robbybayufirdaus" target="_blank" class="contact-item">
+                        <div class="contact-icon icon-youtube">
+                            <i class="bi bi-youtube"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>YouTube Robby Bayu Firdaus</h4>
+                            <p>Tonton full gameplay video dan tutorial update</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2026 BangBay Gaming. All rights reserved.</p>
+                <p style="font-size: 0.75rem; margin-top: 4px; color: var(--text-secondary);">Google Play dan logo
+                    Google Play adalah merek dagang Google LLC. Halaman ini adalah konsep buatan fans.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#catalog">Games</a>
+                <a href="#tutorial">Tutorial</a>
+                <a href="https://discord.gg/pvzfusion" target="_blank">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DETAILED GAME POPUP (FULLSCREEN MODAL) -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-header">
+            <button class="btn-back" onclick="closeModal()" title="Kembali ke Beranda">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <div style="margin-left: 16px; font-family: var(--font-header); font-weight: 600;">Detail Game</div>
+        </div>
+
+        <div class="modal-container" id="modalContainer">
+            <!-- App Detail Header -->
+            <div class="app-detail-header">
+                <div class="app-detail-icon-wrapper">
+                    <img src="logo-pvzfusion.png" class="app-detail-icon" alt="Game icon">
+                </div>
+                <div class="app-detail-meta">
+                    <h2 class="app-detail-title" id="modalTitle">PVZ Fusion [Version]</h2>
+                    <div class="app-detail-tags">
+                        <span class="card-badge badge-original" id="modalPlatform">Platform</span>
+                        <span class="card-badge" id="modalModType">Tipe Mod</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges Strip -->
+            <div class="badges-strip">
+                <div class="badge-column">
+                    <div class="badge-value" id="modalVersion">-</div>
+                    <div class="badge-label">Versi</div>
+                </div>
+                <div class="badge-column">
+                    <div class="badge-value"><i class="bi bi-download"></i></div>
+                    <div class="badge-label" id="modalDownloadLabel">Unduh Langsung</div>
+                </div>
+                <div class="badge-column">
+                    <div class="badge-value">3+</div>
+                    <div class="badge-label">Rating 3+</div>
+                </div>
+            </div>
+
+            <!-- Install Button -->
+            <div class="install-block">
+                <a href="#" id="modalInstallBtn" target="_blank" class="btn-install">
+                    <i class="bi bi-download"></i> Unduh Sekarang
+                </a>
+                <div class="device-info">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 0.9rem;"></i>
+                    <span>Tautan terverifikasi aman dan siap diunduh</span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="detail-desc-section">
+                <div class="detail-desc-title">Tentang game ini</div>
+                <div class="detail-desc-content" id="modalDesc">
+                    <!-- Dynamic Description -->
+                </div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="info-grid-section">
+                <div class="info-grid-title">Informasi Tambahan</div>
+                <div class="info-grid">
+                    <div class="info-grid-item">
+                        <span class="info-grid-label">Versi Game</span>
+                        <span class="info-grid-val" id="infoVersion">-</span>
+                    </div>
+                    <div class="info-grid-item">
+                        <span class="info-grid-label">Diupdate Pada</span>
+                        <span class="info-grid-val" id="infoUpdated">Terbaru (2026)</span>
+                    </div>
+                    <div class="info-grid-item">
+                        <span class="info-grid-label">Ukuran Download</span>
+                        <span class="info-grid-val">Bervariasi berdasarkan platform</span>
+                    </div>
+                    <div class="info-grid-item">
+                        <span class="info-grid-label">Ditawarkan Oleh</span>
+                        <span class="info-grid-val">BangBay Gaming</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR LOGIC -->
+    <script>
+        const spreadsheetId = '1rSGoLpAd087I8hETAXCT4LBT79u9Nb5sKdWVGeIGIso';
+        let allGameData = [];
+        let currentTab = 'Android';
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchSpreadsheetData();
+
+            // Search Input Event
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                filterAndRenderGames(e.target.value);
+            });
+        });
+
+        // Mobile search toggle
+        function toggleMobileSearch() {
+            const container = document.getElementById('searchContainer');
+            container.classList.add('mobile-expanded');
+            setTimeout(() => {
+                document.getElementById('searchInput').focus();
+            }, 100);
+        }
+
+        function closeMobileSearch() {
+            const container = document.getElementById('searchContainer');
+            container.classList.remove('mobile-expanded');
+            document.getElementById('searchInput').value = '';
+            filterAndRenderGames('');
+        }
+
+        // Fetch Google Sheet data using Viz Query API
+        function fetchSpreadsheetData() {
+            const query = 'select A,B,C,D,E,F,G order by A desc';
+            const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tq=${encodeURIComponent(query)}&tqx=out:json`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(rep => {
+                    // Extract JSON from Viz Wrapper
+                    const data = JSON.parse(rep.substr(47).slice(0, -2));
+                    const rows = data.table.rows;
+
+                    // Map spreadsheet rows to clean JS objects
+                    allGameData = rows.map(row => {
+                        return {
+                            id: row.c[0]?.v || '',
+                            name: row.c[1]?.v || '',
+                            type: row.c[2]?.v || '',
+                            mod: row.c[3]?.v || 'No',
+                            desc: row.c[4]?.v || 'Tidak ada keterangan tambahan.',
+                            link: row.c[5]?.v || '#',
+                            versi: row.c[6]?.v || ''
+                        };
+                    });
+
+                    // Hide loading spinner and render
+                    const loadingState = document.getElementById('loadingState');
+                    if (loadingState) loadingState.style.display = 'none';
+
+                    renderGames();
+                })
+                .catch(err => {
+                    console.error('Error fetching data: ', err);
+                    document.getElementById('gameGrid').innerHTML = `
+                        <div class="loading-container">
+                            <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 2rem;"></i>
+                            <p>Gagal memuat database game. Silakan refresh halaman.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Render games based on active tab and search query
+        function renderGames(filteredData = null) {
+            const grid = document.getElementById('gameGrid');
+            const dataToRender = filteredData || allGameData;
+
+            // Filter by active tab (Android or PC)
+            const tabFiltered = dataToRender.filter(game => {
+                // Handle matching types case-insensitively
+                return game.type.toLowerCase() === currentTab.toLowerCase();
+            });
+
+            if (tabFiltered.length === 0) {
+                grid.innerHTML = `
+                    <div class="loading-container" style="grid-column: 1/-1;">
+                        <i class="bi bi-search" style="font-size: 2rem;"></i>
+                        <p>Tidak ada game yang cocok dengan pencarian Anda.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Generate HTML
+            let htmlContent = '';
+            tabFiltered.forEach(game => {
+                // Clean the game name of HTML tags for listing cards (keep text clean)
+                const cleanName = stripHtmlTags(game.name);
+
+                // Badges class & label mapping
+                let badgeClass = 'badge-original';
+                let badgeLabel = 'Original';
+                if (game.mod.toLowerCase() === 'mod menu') {
+                    badgeClass = 'badge-mod-menu';
+                    badgeLabel = 'Mod Menu';
+                } else if (game.mod.toLowerCase() === 'mod add on') {
+                    badgeClass = 'badge-mod-addon';
+                    badgeLabel = 'Mod Addon';
+                }
+
+                // Determine file icon
+                const platformIcon = game.type.toLowerCase() === 'pc' ? 'windows' : 'android';
+
+                htmlContent += `
+                    <div class="game-card" onclick="openGameDetail(${game.id})">
+                        <div class="card-icon-wrapper">
+                            <img src="logo-pvzfusion.png" class="card-icon" alt="Game icon">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title" title="${cleanName}">${cleanName}</h3>
+                            <div class="card-stats">
+                                <span class="card-rating">v${game.versi}</span>
+                                <span>•</span>
+                                <span><i class="bi bi-${platformIcon}"></i> ${game.type}</span>
+                            </div>
+                            <span class="card-badge ${badgeClass}">${badgeLabel}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = htmlContent;
+        }
+
+        // Tab switcher
+        function switchTab(tabId) {
+            currentTab = tabId;
+
+            // Toggle active classes on tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            // Update title
+            const categoryTitle = document.getElementById('category-title');
+            if (tabId === 'PC') {
+                categoryTitle.textContent = 'Versi Game PC (Windows)';
+            } else {
+                categoryTitle.textContent = 'Versi Game Android';
+            }
+
+            // Clear search when switching tabs
+            document.getElementById('searchInput').value = '';
+
+            renderGames();
+        }
+
+        // Live Search filtering
+        function filterAndRenderGames(query) {
+            if (!query) {
+                renderGames();
+                return;
+            }
+
+            const cleanQuery = query.toLowerCase();
+            const filtered = allGameData.filter(game => {
+                const nameMatch = stripHtmlTags(game.name).toLowerCase().includes(cleanQuery);
+                const descMatch = stripHtmlTags(game.desc).toLowerCase().includes(cleanQuery);
+                const modMatch = game.mod.toLowerCase().includes(cleanQuery);
+                return nameMatch || descMatch || modMatch;
+            });
+
+            renderGames(filtered);
+        }
+
+        // Open detailed game popup modal
+        function openGameDetail(gameId) {
+            const game = allGameData.find(g => g.id === gameId);
+            if (!game) return;
+
+            const modal = document.getElementById('detailModal');
+
+            // Clean dynamic values
+            const cleanTitle = stripHtmlTags(game.name);
+            document.getElementById('modalTitle').textContent = cleanTitle;
+
+            document.getElementById('modalVersion').textContent = game.versi;
+            document.getElementById('modalPlatform').textContent = game.type === 'PC' ? 'Windows PC' : 'Android Mobile';
+
+            // Set Mod Type badge on Modal
+            const modBadge = document.getElementById('modalModType');
+            modBadge.textContent = game.mod;
+            modBadge.className = 'card-badge'; // Reset classes
+            if (game.mod.toLowerCase() === 'mod menu') {
+                modBadge.classList.add('badge-mod-menu');
+            } else if (game.mod.toLowerCase() === 'mod add on') {
+                modBadge.classList.add('badge-mod-addon');
+            } else {
+                modBadge.classList.add('badge-original');
+            }
+
+            // Download Label based on type
+            const downloadLabel = document.getElementById('modalDownloadLabel');
+            if (game.type.toLowerCase() === 'pc') {
+                downloadLabel.textContent = 'Unduh untuk PC';
+            } else {
+                downloadLabel.textContent = 'Unduh APK';
+            }
+
+            // Install link URL
+            const installBtn = document.getElementById('modalInstallBtn');
+            installBtn.href = game.link;
+
+            // Render description (this text contains markup, so we render it as innerHTML)
+            document.getElementById('modalDesc').innerHTML = game.desc;
+
+            // Info Grid details
+            const extractedVersion = extractVersionFromName(cleanTitle);
+            document.getElementById('infoVersion').textContent = extractedVersion;
+
+            // Extract date if present in description, else set default
+            const extractedDate = extractDateFromDesc(game.desc);
+            document.getElementById('infoUpdated').textContent = extractedDate;
+
+            // Prevent page scrolling behind modal
+            document.body.style.overflow = 'hidden';
+
+            // Show Modal with Fade Effect
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        // Close detailed game popup modal
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            modal.classList.remove('active');
+
+            // Re-allow background scrolling
+            document.body.style.overflow = 'auto';
+
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 250);
+        }
+
+        // Helper to strip HTML tags for clean text display
+        function stripHtmlTags(str) {
+            if (!str) return '';
+            return str.replace(/<[^>]*>/g, '');
+        }
+
+        // Helper to extract version code from game title (e.g. PVZ Fusion 3.7 -> 3.7)
+        function extractVersionFromName(name) {
+            const match = name.match(/(\d+\.\d+(\.\d+)?)/);
+            return match ? match[0] : 'v3.7';
+        }
+
+        // Helper to parse date from description (e.g. Update 19 Juni 2026)
+        function extractDateFromDesc(desc) {
+            const match = desc.match(/Update\s+([0-9a-zA-Z\s]+)/i);
+            return match ? match[1].replace(/<[^>]*>/g, '') : 'Terbaru (2026)';
+        }
+    </script>
+</body>
+
 </html>
