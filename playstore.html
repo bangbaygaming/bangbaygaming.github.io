@@ -1229,7 +1229,6 @@
                 </div>
                 <div class="app-detail-meta">
                     <h2 class="app-detail-title" id="modalTitle">PVZ Fusion [Version]</h2>
-                    <div class="app-detail-dev">BangBay Gaming</div>
                     <div class="app-detail-tags">
                         <span class="card-badge badge-original" id="modalPlatform">Platform</span>
                         <span class="card-badge" id="modalModType">Tipe Mod</span>
@@ -1240,8 +1239,8 @@
             <!-- Badges Strip -->
             <div class="badges-strip">
                 <div class="badge-column">
-                    <div class="badge-value">4.8 <i class="bi bi-star-fill" style="color: #ffb300;"></i></div>
-                    <div class="badge-label">54 ulasan</div>
+                    <div class="badge-value" id="modalVersion">-</div>
+                    <div class="badge-label">Versi</div>
                 </div>
                 <div class="badge-column">
                     <div class="badge-value"><i class="bi bi-download"></i></div>
@@ -1332,7 +1331,7 @@
 
         // Fetch Google Sheet data using Viz Query API
         function fetchSpreadsheetData() {
-            const query = 'select A,B,C,D,E,F order by A desc';
+            const query = 'select A,B,C,D,E,F,G order by A desc';
             const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tq=${encodeURIComponent(query)}&tqx=out:json`;
 
             fetch(url)
@@ -1350,7 +1349,8 @@
                             type: row.c[2]?.v || '',
                             mod: row.c[3]?.v || 'No',
                             desc: row.c[4]?.v || 'Tidak ada keterangan tambahan.',
-                            link: row.c[5]?.v || '#'
+                            link: row.c[5]?.v || '#',
+                            versi: row.c[6]?.v || ''
                         };
                     });
 
@@ -1420,7 +1420,7 @@
                         <div class="card-info">
                             <h3 class="card-title" title="${cleanName}">${cleanName}</h3>
                             <div class="card-stats">
-                                <span class="card-rating">4.8 <i class="bi bi-star-fill"></i></span>
+                                <span class="card-rating">v${game.versi}</span>
                                 <span>•</span>
                                 <span><i class="bi bi-${platformIcon}"></i> ${game.type}</span>
                             </div>
@@ -1485,6 +1485,8 @@
             // Clean dynamic values
             const cleanTitle = stripHtmlTags(game.name);
             document.getElementById('modalTitle').textContent = cleanTitle;
+
+            document.getElementById('modalVersion').textContent = game.versi;
             document.getElementById('modalPlatform').textContent = game.type === 'PC' ? 'Windows PC' : 'Android Mobile';
 
             // Set Mod Type badge on Modal
