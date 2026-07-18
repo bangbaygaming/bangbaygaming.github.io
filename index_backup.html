@@ -489,6 +489,77 @@
             }
         }
 
+        /* LAZY LOADER & SKELETON */
+        .lazy-loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 0;
+            color: var(--text-secondary);
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .lazy-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--play-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .skeleton-card {
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.01) !important;
+            border: 1px solid var(--border-color);
+            opacity: 0.7;
+        }
+
+        .skeleton-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skeleton-text {
+            height: 14px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skeleton-shimmer::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 1.5s infinite;
+            content: '';
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
         /* TUTORIAL & VIDEO TRAILER SECTION */
         .tutorial-section {
             background-color: var(--bg-nav);
@@ -1107,7 +1178,7 @@
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-tag">Update Terbaru v3.7</span>
+                    <span class="hero-tag">Update Terbaru v3.8</span>
                     <h1 class="hero-title">PVZ Fusion Edition</h1>
                     <p class="hero-subtitle">Nikmati pengalaman bermain Plants vs Zombies dengan mekanik fusion unik.
                         Unduh versi terlengkap untuk Android & PC di sini!</p>
@@ -1117,7 +1188,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="Logo37.png" alt="PVZ Fusion 3.7 Cover Logo">
+                    <img src="Logo38.png" alt="PVZ Fusion 3.8 Cover Logo">
                 </div>
             </div>
         </section>
@@ -1143,6 +1214,12 @@
                     <div class="spinner"></div>
                     <p>Memuat database game...</p>
                 </div>
+            </div>
+
+            <!-- Lazy Loading Indicator -->
+            <div id="lazyLoader" class="lazy-loading-container" style="display: none;">
+                <div class="lazy-spinner"></div>
+                <p>Memuat game lainnya...</p>
             </div>
         </section>
 
@@ -1307,9 +1384,18 @@
         let allGameData = [];
         let currentTab = 'Android';
 
+        // Lazy Load State Variables
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let currentFilteredData = [];
+        let isLoading = false;
+        let lazyLoadObserver = null;
+        let lazyLoadTimeout = null;
+
         // Load data on page load
         document.addEventListener('DOMContentLoaded', () => {
             fetchSpreadsheetData();
+            setupLazyLoad();
 
             // Search Input Event
             document.getElementById('searchInput').addEventListener('input', (e) => {
@@ -1377,32 +1463,46 @@
 
         // Render games based on active tab and search query
         function renderGames(filteredData = null) {
-            const grid = document.getElementById('gameGrid');
-            const dataToRender = filteredData || allGameData;
+            // Cancel any pending lazy load timeouts and reset states
+            if (lazyLoadTimeout) {
+                clearTimeout(lazyLoadTimeout);
+                lazyLoadTimeout = null;
+            }
+            isLoading = false;
+
+            const dataToFilter = filteredData !== null ? filteredData : allGameData;
 
             // Filter by active tab (Android or PC)
-            const tabFiltered = dataToRender.filter(game => {
-                // Handle matching types case-insensitively
+            currentFilteredData = dataToFilter.filter(game => {
                 return game.type.toLowerCase() === currentTab.toLowerCase();
             });
 
-            if (tabFiltered.length === 0) {
+            currentPage = 1;
+            renderPaginatedGames();
+        }
+
+        // Render current paginated items
+        function renderPaginatedGames() {
+            const grid = document.getElementById('gameGrid');
+            
+            if (currentFilteredData.length === 0) {
                 grid.innerHTML = `
                     <div class="loading-container" style="grid-column: 1/-1;">
                         <i class="bi bi-search" style="font-size: 2rem;"></i>
                         <p>Tidak ada game yang cocok dengan pencarian Anda.</p>
                     </div>
                 `;
+                hideLazyLoader();
                 return;
             }
 
-            // Generate HTML
+            const limit = currentPage * itemsPerPage;
+            const itemsToShow = currentFilteredData.slice(0, limit);
+
             let htmlContent = '';
-            tabFiltered.forEach(game => {
-                // Clean the game name of HTML tags for listing cards (keep text clean)
+            itemsToShow.forEach(game => {
                 const cleanName = stripHtmlTags(game.name);
 
-                // Badges class & label mapping
                 let badgeClass = 'badge-original';
                 let badgeLabel = 'Original';
                 if (game.mod.toLowerCase() === 'mod menu') {
@@ -1416,7 +1516,6 @@
                     badgeLabel = 'Multi Language';
                 }
 
-                // Determine file icon
                 const platformIcon = game.type.toLowerCase() === 'pc' ? 'windows' : 'android';
 
                 htmlContent += `
@@ -1438,6 +1537,94 @@
             });
 
             grid.innerHTML = htmlContent;
+
+            // Handle loader visibility
+            if (currentFilteredData.length > limit) {
+                showLazyLoader();
+            } else {
+                hideLazyLoader();
+            }
+        }
+
+        // Lazy Load Functions
+        function loadMoreGames() {
+            if (isLoading) return;
+
+            const limit = currentPage * itemsPerPage;
+            if (currentFilteredData.length <= limit) {
+                hideLazyLoader();
+                return;
+            }
+
+            isLoading = true;
+            appendSkeletons(3); // show 3 skeleton cards as animation
+
+            lazyLoadTimeout = setTimeout(() => {
+                removeSkeletons();
+                currentPage++;
+                renderPaginatedGames();
+                isLoading = false;
+            }, 800); // simulated loading delay for visual satisfaction
+        }
+
+        function appendSkeletons(count = 3) {
+            const grid = document.getElementById('gameGrid');
+            let skeletonsHtml = '';
+            for (let i = 0; i < count; i++) {
+                skeletonsHtml += `
+                    <div class="game-card skeleton-card temporary-skeleton">
+                        <div class="skeleton-icon skeleton-shimmer"></div>
+                        <div class="card-info" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <div class="skeleton-text skeleton-shimmer" style="width: 75%; height: 16px;"></div>
+                            <div class="skeleton-text skeleton-shimmer" style="width: 45%; height: 12px;"></div>
+                            <div class="skeleton-text skeleton-shimmer" style="width: 30%; height: 12px; margin-bottom: 0;"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            grid.insertAdjacentHTML('beforeend', skeletonsHtml);
+        }
+
+        function removeSkeletons() {
+            const skeletons = document.querySelectorAll('.temporary-skeleton');
+            skeletons.forEach(s => s.remove());
+        }
+
+        function setupLazyLoad() {
+            const lazyLoader = document.getElementById('lazyLoader');
+            if (!lazyLoader) return;
+
+            if (lazyLoadObserver) {
+                lazyLoadObserver.disconnect();
+            }
+
+            lazyLoadObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !isLoading) {
+                        loadMoreGames();
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '100px',
+                threshold: 0.1
+            });
+
+            lazyLoadObserver.observe(lazyLoader);
+        }
+
+        function showLazyLoader() {
+            const lazyLoader = document.getElementById('lazyLoader');
+            if (lazyLoader) {
+                lazyLoader.style.display = 'flex';
+            }
+        }
+
+        function hideLazyLoader() {
+            const lazyLoader = document.getElementById('lazyLoader');
+            if (lazyLoader) {
+                lazyLoader.style.display = 'none';
+            }
         }
 
         // Tab switcher
